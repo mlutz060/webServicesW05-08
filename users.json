@@ -1,0 +1,23 @@
+[
+    {
+        "fname": "Carol",
+        "lname": "King",
+        "height": "5'2",
+        "membershipStatus": "premium",
+        "cardNum": "oihwefihnklk"
+    },
+    {
+        "fname": "Jeff",
+        "lname": "Moore",
+        "height": "6'3",
+        "membershipStatus": "regular",
+        "cardNum": "oihwsnlfknklk"
+    },
+    {
+        "fname": "Mike",
+        "lname": "Kohls",
+        "height": "5'10",
+        "membershipStatus": "gold",
+        "cardNum": "nslkanfklasnk"
+    }
+]

@@ -2,8 +2,8 @@ const swaggerAutogen = require('swagger-autogen')();
 
 const doc = {
   info: {
-    title: 'Website API',
-    description: 'Website API'
+    title: 'Gym API',
+    description: 'Gym API'
   },
   host: 'https://webservicesw05-08.onrender.com',
   schemes: ['https']
