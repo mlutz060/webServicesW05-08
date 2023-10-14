@@ -1,21 +1,26 @@
 const mongodb = require('../databse/connect');
-// const ObjectId = require('mongodb').ObjectId;
+const ObjectId = require('mongodb').ObjectId;
 
-const getAllUsers = async (res) => {
-    const results = await mongodb.getDb().db().collection('users').find();
-    results.toArray().then((lists) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists);
+const getAllUsers = async (req, res, next) => {
+    const result = await mongodb.getDb().db().collection('users').find();
+    result.toArray().then((lists) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists);
     });
-};
+  };
 
-const getsingleUser = async (res) => {
-    const results = await mongodb.getDb().db().collection('users').find();
-    results.toArray().then((lists) =>{
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists);
+  const getsingleUser = async (req, res, next) => {
+    const userId = new ObjectId(req.params.id);
+    const result = await mongodb
+      .getDb()
+      .db()
+      .collection('users')
+      .find({ _id: userId });
+    result.toArray().then((lists) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(lists[0]);
     });
-};
+  };
 
 
 const PostNewUser = async (req, res) => {
