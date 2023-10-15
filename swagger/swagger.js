@@ -5,7 +5,7 @@ const doc = {
     title: 'Gym API',
     description: 'Gym API'
   },
-  host: 'https://webservicesw05-08.onrender.com',
+  host: 'webservicesw05-08.onrender.com',
   schemes: ['https']
 };
 

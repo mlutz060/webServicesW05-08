@@ -1,8 +1,9 @@
 const mongodb = require('../databse/connect');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAllUsers = async (req, res, next) => {
-    const result = await mongodb.getDb().db().collection('users').find();
+
+const getAllUsers = async (req, res) => {
+    const result = await mongodb.getDb().db('SimpleWebsite').collection('users').find();
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists);
@@ -13,7 +14,7 @@ const getAllUsers = async (req, res, next) => {
     const userId = new ObjectId(req.params.id);
     const result = await mongodb
       .getDb()
-      .db()
+      .db('SimpleWebsite')
       .collection('users')
       .find({ _id: userId });
     result.toArray().then((lists) => {
