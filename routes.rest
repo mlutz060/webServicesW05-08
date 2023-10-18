@@ -4,5 +4,30 @@ GET http://localhost:3000/users
 
 
 ### Get contact by id
-# GET http://localhost:3000/users
+GET http://localhost:3000/users/652b0131f8332ef57b542f35
 
+
+### Create User
+POST http://localhost:300/users HTTP/1.1
+content-type: application/json
+{
+    "fname": "Jennifer",
+    "lname": "Lawrence",
+    "height": "5'10",
+    "membershipStatus": "gold",
+    "cardNum": "9374097097390"
+}
+
+### Update User
+PUT http://localhost:300/users/652b0131f8332ef57b542f35 HTTP/1.1
+content-type: application/json
+{
+    "fname": "Michael",
+    "lname": "Angelo",
+    "height": "6'5",
+    "membershipStatus": "silver",
+    "cardNum": "iugiuguiui"
+}
+
+### Delete User
+DELETE http://localhost:3000/localhost:3000/users/652b0131f8332ef57b542f35

@@ -41,10 +41,41 @@ const PostNewUser = async (req, res) => {
     }
 };
 
+const UpdateUser = async (req, res) => {
+  const user = new ObjectId(req.params.id);
+  const contact = {
+    fname: req.body.fname,
+        lname: req.body.lname ,
+        height: req.body.height,
+        membershipStatus: req.body.membershipStatus,
+        cardNum: req.body.cardNum
+  }
+  const response = await mongodb.getDb.db('SimpleWebsite').collection('users').replaceOne({_id: user }, users);
+  console.log(response);
+  if(response.modifiedCount > 0){
+    res.status(204).send();
+  }
+  else{
+    res.status(500).json(response.error || 'Error')
+  }
+};
+
+const DeleteUser = async (req, res) => {
+  const user = new ObjectId(req.params.id);
+  const response = await mongodb().db('SimpleWebsite').collection('users').deleteOne({ _id: user }, true);
+  if (response.deletedCount > 0){
+    res.status(204).send();
+  }
+  else{
+    res.status(500).json(response.error || 'Error');
+  }
+}
 
 
 module.exports = {
     getAllUsers,
     getsingleUser,
-    PostNewUser
+    PostNewUser,
+    UpdateUser,
+    DeleteUser
 }
