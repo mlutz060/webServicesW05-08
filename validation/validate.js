@@ -1,12 +1,12 @@
 const validator = require('../helpers/validate');
 
-const createUser = (req, res, next) =>{
+const saveUser = (req, res, next) =>{
     const validationRule = {
-        fname: 'required|string',
-        lname: 'required|string',
+        fname: 'required| min:2',
+        lname: 'required|string min:2',
         Height: 'required|string',
-        membershipStatus: 'required|string',
-        cardnum: 'required|int',
+        membershipStatus: 'string',
+        cardnum: 'required|int min:16',
     };
     validator(req.body, validationRule, {}, (err, status) =>{
         if (!status){
@@ -21,28 +21,9 @@ const createUser = (req, res, next) =>{
     });
 };
 
-const updateUser = (req, res, next) =>{
-    const validationRule = {
-        fname: 'required|string',
-        lname: 'required|string',
-        Height: 'required|string',
-        membershipStatus: 'required|string',
-        cardnum: 'required|int',
-    };
-    validator(req.body, validationRule, {}, (err, status) =>{
-        if (!status){
-            res.status(412).send({
-                success: false,
-                message: 'Validation failed',
-                data: err
-            });
-        } else {
-            next();
-        }
-    });
-};
+
 
 module.exports = {
-    createUser,
-    updateUser,
+    saveUser,
+
 }
