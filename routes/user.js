@@ -8,6 +8,9 @@ router.get('/:id', usersController.getsingleUser)
 
 router.post('/', usersController.PostNewUser);
 
+router.put('/:id', usersController.UpdateUser);
+
+router.delete('/:id', usersController.DeleteUser);
 
 
 module.exports = router;
