@@ -2,11 +2,11 @@ const validator = require('../helpers/validate');
 
 const saveUser = (req, res, next) =>{
     const validationRule = {
-        fname: 'required| min:2',
-        lname: 'required|string min:2',
-        Height: 'required|string',
+        fname: 'required|min:2',
+        lname: 'required|string|min:2',
+        height: 'required|string',
         membershipStatus: 'string',
-        cardnum: 'required|int min:16',
+        cardNum: 'required|min:16',
     };
     validator(req.body, validationRule, {}, (err, status) =>{
         if (!status){

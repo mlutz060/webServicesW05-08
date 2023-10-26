@@ -32,7 +32,11 @@ const PostNewUser = async (req, res) => {
         membershipStatus: req.body.membershipStatus,
         cardNum: req.body.cardNum
     };
-    const response = await mongodb.getDb().db().collection('users').insertOne(user);
+    const response = await mongodb
+      .getDb()
+      .db('SimpleWebsite')
+      .collection('users')
+      .insertOne(user);
     if (response.acknowledged){
         res.status(201).json(response);
     }
@@ -43,14 +47,18 @@ const PostNewUser = async (req, res) => {
 
 const UpdateUser = async (req, res) => {
   const user = new ObjectId(req.params.id);
-  const contact = {
+  const data = {
     fname: req.body.fname,
-        lname: req.body.lname ,
-        height: req.body.height,
-        membershipStatus: req.body.membershipStatus,
-        cardNum: req.body.cardNum
+    lname: req.body.lname ,
+    height: req.body.height,
+    membershipStatus: req.body.membershipStatus,
+    cardNum: req.body.cardNum
   }
-  const response = await mongodb.getDb.db('SimpleWebsite').collection('users').replaceOne({_id: user }, users);
+  const response = await mongodb
+    .getDb()
+    .db('SimpleWebsite')
+    .collection('users')
+    .replaceOne({ _id: user }, data);
   console.log(response);
   if(response.modifiedCount > 0){
     res.status(204).send();
@@ -62,7 +70,10 @@ const UpdateUser = async (req, res) => {
 
 const DeleteUser = async (req, res) => {
   const user = new ObjectId(req.params.id);
-  const response = await mongodb().db('SimpleWebsite').collection('users').deleteOne({ _id: user }, true);
+  const response = await mongodb
+    .db('SimpleWebsite')
+    .collection('users')
+    .deleteOne({ _id: user }, true);
   if (response.deletedCount > 0){
     res.status(204).send();
   }

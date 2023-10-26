@@ -4,7 +4,7 @@ GET http://localhost:3000/users
 
 
 ### Get contact by id
-GET http://localhost:3000/users/652b0131f8332ef57b542f35
+GET http://localhost:3000/users/652b0131f8332ef57b542f34
 
 
 ### Create User
@@ -12,24 +12,27 @@ POST http://localhost:3000/users HTTP/1.1
 content-type: application/json
 
 {
-    "fname": "Jennifer",
-    "lname": "Lawrence",
-    "height": "5 feet 10 inches,
+    "fname": "Chloe",
+    "lname": "Lutz",
+    "height": "5ft 1in",
     "membershipStatus": "gold",
-    "cardNum": "9374kjdkj"
+    "cardNum": "9678654387554568"
 }
 
 ### Update User
-PUT http://localhost:3000/users/652b0131f8332ef57b542f35 HTTP/1.1
+PUT http://localhost:3000/users/653adc627914f717f5f66654 HTTP/1.1
 content-type: application/json
 
 {
-    "fname": "Michael",
-    "lname": "Angelo",
-    "height": "6'5",
-    "membershipStatus": "silver",
-    "cardNum": "1234567891011141"
+    "fname": "Chloe",
+    "lname": "Lutz",
+    "height": "5ft 1in",
+    "membershipStatus": "gold",
+    "cardNum": "1224567891011223"
 }
 
 ### Delete User
-DELETE http://localhost:3000/localhost:3000/users/652b0131f8332ef57b542f35
+DELETE http://localhost:3000/users/652b0131f8332ef57b542f35
+
+
+
