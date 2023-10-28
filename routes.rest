@@ -36,3 +36,39 @@ DELETE http://localhost:3000/users/652b0131f8332ef57b542f35
 
 
 
+###Render Links
+
+### Get all contacts
+GET https://week5-8-xcpp.onrender.com/users
+
+
+### Get contact by id
+GET https://week5-8-xcpp.onrender.com/users/652b0131f8332ef57b542f34
+
+
+### Create User
+POST https://week5-8-xcpp.onrender.com/users HTTP/1.1
+content-type: application/json
+
+{
+    "fname": "Chloe",
+    "lname": "Lutz",
+    "height": "5ft 1in",
+    "membershipStatus": "gold",
+    "cardNum": "9678654387554568"
+}
+
+### Update User
+PUT https://week5-8-xcpp.onrender.com/users/653adc627914f717f5f66654 HTTP/1.1
+content-type: application/json
+
+{
+    "fname": "Chloe",
+    "lname": "Lutz",
+    "height": "5ft 1in",
+    "membershipStatus": "gold",
+    "cardNum": "1224567891011223"
+}
+
+### Delete User
+DELETE https://week5-8-xcpp.onrender.com/users/652b0131f8332ef57b542f35

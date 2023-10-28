@@ -12,6 +12,6 @@ router.post('/', validation.saveUser, usersController.PostNewUser);
 router.put('/:id', validation.saveUser, usersController.UpdateUser);
 
 router.delete('/:id', usersController.DeleteUser);
-
+//validate the id 
 
 module.exports = router;

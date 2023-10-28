@@ -1,8 +1,17 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const MongoClient = require('mongodb').MongoClient;
-
+const mongoose = require('monngoose');
 let _db;
+
+
+const userSchema = new mongoose.Schema ({
+    email: String,
+    username: String,
+    googleId: String
+});
+
+const User = new mongoose.model("User", userSchema);
 
 const initDb = (callback) => {
     if(_db){
