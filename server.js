@@ -41,6 +41,9 @@ passport.use(new GoogleStrategy({
         );
     }
 ));
+app.get("/auth/google",
+passport.authenticate("google", { scope: ["profile"] })
+);
 app.use('/', require('./routes'))
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

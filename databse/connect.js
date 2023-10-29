@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const MongoClient = require('mongodb').MongoClient;
-const mongoose = require('monngoose');
+const mongoose = require('mongoose');
 let _db;
 
 
