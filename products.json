@@ -1,0 +1,38 @@
+[
+    {
+        "bookTitle": "Harry Poter and the Socerer's Stone",
+        "bookAuthor": "J.K. Rowling",
+        "bookSummary": "lorem ipsum...",
+        "stock": "12",
+        "location": "Dayton, Ohio",
+        "pages": "309",
+        "genre": "fiction"
+    },
+    {
+        "bookTitle": "A Winter's Promise ",
+        "bookAuthor": "Christelle Dabos",
+        "bookSummary": "lorem...",
+        "stock": "3",
+        "location": "Dayton, Ohio",
+        "pages": "492",
+        "genre": "fiction/mystery"
+    },
+    {
+        "bookTitle": "The Storm of Echoes",
+        "bookAuthor": "Christelle Dabos",
+        "bookSummary": "lorem ipsum...",
+        "stock": "1",
+        "location": "Dayton, Ohio",
+        "pages": "544",
+        "genre": "fiction/mystery"
+    },
+    {
+        "bookTitle": "Dragon Forged",
+        "bookAuthor": "Dan Michaelson, D.K. Holmberg",
+        "bookSummary": "lorem ipsum...",
+        "stock": "6",
+        "location": "Dayton, Ohio",
+        "pages": "336",
+        "genre": "fiction"
+    }
+]

@@ -1,6 +1,6 @@
 const validator = require('../helpers/validate');
 
-const saveUser = (req, res, next) =>{
+const validationRule = (req, res, next) =>{
     const validationRule = {
         fname: 'required|min:2',
         lname: 'required|string|min:2',
@@ -20,10 +20,26 @@ const saveUser = (req, res, next) =>{
         }
     });
 };
-
+const validateId = (req, res, next) => {
+    const validationRule = {
+      id: 'required|alpha_num|size:24'
+    }
+    validator(req.params, validationRule, {}, (err, status) => {
+      if (!status) {
+        res.status(412).send({
+          success: false,
+          message: 'Validation failed',
+          data: err
+        });
+      } else {
+        next();
+      }
+    });
+  }
 
 
 module.exports = {
-    saveUser,
+    validationRule,
+    validateId
 
 }
