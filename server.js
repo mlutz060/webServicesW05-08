@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const mongodb = require('./databse/connect');
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger/swagger.json");
-const cors = require("cors");
+
 const {} = './validation.js';
 
 const port = process.env.PORT || 3000;
@@ -16,7 +16,6 @@ app.use((req, res, next) => {
     })
 app.use('/', require('./routes/index'))
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use(cors())
 
 mongodb.initDb((err) => {
     if (err) {
