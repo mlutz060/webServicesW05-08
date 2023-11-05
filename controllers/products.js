@@ -1,36 +1,51 @@
-import * as mongodb from '../databse/connect';
-import { ObjectId } from 'mongodb';
-import { Request, Response, NextFunction } from 'express';
+const mongodb = require('../databse/connect');
+const ObjectId = require('mongodb').ObjectId;
 
-const getAllProducts = async (req, res) => {
-  try {
-    const result = await mongodb.getDb().db('SimpleWebsite').collection('products').find();
-    const lists = await result.toArray();
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
-
-const getsingleProduct = async (req, res) => {
-  try {
-    const productId = new ObjectId(req.params.id);
+const getAllProducts = async (req, res, next) => {
     const result = await mongodb
+    .getDb()
+    .db('SimpleWebsite')
+    .collection('products')
+    .find();
+    if (result){
+      result.toArray().then((lists) => {
+        res.setHeader("Content-Type", "application/json");
+        res.status(200).json(lists)
+          });
+        }
+      else {
+          res
+            .status(500)
+            .json(
+              result.error || "ERROR: Something went wrong, this show could not be found."
+            );
+      };
+  };
+
+const getsingleProduct = async (req, res, next) => {    
+  const productId = new ObjectId(req.params.id);
+  const result = await mongodb
       .getDb()
       .db('SimpleWebsite')
       .collection('products')
       .find({ _id: productId });
-    const lists = await result.toArray();
-    res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(lists[0]);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+      if (result)
+      {
+        result.toArray().then((lists) => {
+        res.setHeader("Content-Type", "application/json");
+        res.status(200).json(lists[0])
+          });
+        }
+      else {
+          res
+            .status(500)
+            .json(
+              result.error || "ERROR: Something went wrong, this show could not be found."
+            );
+      };
+  };
 
-const PostNewProduct = async (req, res) => {
-  try {
+const PostNewProduct = async (req, res, next) => {
     const product = {
       bookTitle: req.body.bookTitle,
       bookAuthor: req.body.bookAuthor,
@@ -40,23 +55,20 @@ const PostNewProduct = async (req, res) => {
       pages: req.body.pages,
       genre: req.body.genre
     };
-    const response = await mongodb
+    const result = await mongodb
       .getDb()
       .db('SimpleWebsite')
       .collection('products')
       .insertOne(product);
-    if (response.acknowledged) {
-      res.status(201).json(response);
+    if (result.acknowledged) {
+      res.status(201).json(result);
     } else {
-      res.status(500).json(response.error || "There was an error");
+      res.status(500)
+      .json(response.error || "There was an error");
     }
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
 };
 
-const UpdateProduct = async (req, res) => {
-  try {
+const UpdateProduct = async (req, res, next) => {
     const productId = new ObjectId(req.params.id);
     const data = {
       bookTitle: req.body.bookTitle,
@@ -73,18 +85,16 @@ const UpdateProduct = async (req, res) => {
       .collection('products')
       .replaceOne({ _id: productId }, data);
 
-    if (response.modifiedCount > 0) {
-      res.status(204).send();
-    } else {
-      res.status(500).json({ error: 'Error' });
-    }
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+      if (result.modifiedCount > 0) {
+        res.status(204).send();
+      } else {
+        res
+          .status(500)
+          .json(result.error || "ERROR: The show could not be updated.");
+      }
 };
 
-const DeleteProduct = async (req, res) => {
-  try {
+const DeleteProduct = async (req, res, next) => {
     const productId = new ObjectId(req.params.id);
     const response = await mongodb
       .getDb()
@@ -97,12 +107,9 @@ const DeleteProduct = async (req, res) => {
     } else {
       res.status(500).json({ error: 'Error' });
     }
-  } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+  };
 
-export {
+module.exports = {
   getAllProducts,
   getsingleProduct,
   PostNewProduct,

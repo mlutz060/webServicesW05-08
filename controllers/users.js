@@ -1,9 +1,7 @@
 const mongodb = require('../databse/connect');
 const ObjectId = require('mongodb').ObjectId;
-const findOrCreate = require('mongoose-findorcreate');
 
-
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res, next) => {
     const result = await mongodb.getDb().db('SimpleWebsite').collection('users').find();
     result.toArray().then((lists) => {
       res.setHeader('Content-Type', 'application/json');
@@ -46,7 +44,7 @@ const PostNewUser = async (req, res) => {
     }
 };
 
-const UpdateUser = async (req, res) => {
+const UpdateUser = async (req, res, next) => {
   const user = new ObjectId(req.params.id);
   const data = {
     fname: req.body.fname,
@@ -69,7 +67,7 @@ const UpdateUser = async (req, res) => {
   }
 };
 
-const DeleteUser = async (req, res) => {
+const DeleteUser = async (req, res, next) => {
   const user = new ObjectId(req.params.id);
   const response = await mongodb
     .db('SimpleWebsite')
